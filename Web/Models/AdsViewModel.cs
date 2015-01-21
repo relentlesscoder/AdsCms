@@ -6,5 +6,7 @@ namespace AdCms.Web.Models
     public class AdsViewModel
     {
         public IList<AdsDo> Ads { get; set; }
+
+        public bool EnablePaging { get; set; }
     }
 }

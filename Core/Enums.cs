@@ -13,5 +13,14 @@ namespace AdCms.Core
             Asc = 1,
             Desc = 2
         }
+
+        public enum SortByColumn
+        {
+            AdId = 1,
+            BrandId = 2,
+            Name = 3,
+            NumPages = 4,
+            Position = 5
+        }
     }
 }

@@ -4,6 +4,10 @@
 
 @if (Model.Ads != null && Model.Ads.Count > 0)
 {
+    <div id="divControlPanels">
+        
+    </div>
+    
     <table id="tbAds">
         <tr>
             <th>AdId</th>
@@ -23,4 +27,9 @@
             </tr>
         }
     </table>
+    
+     if (Model.EnablePaging)
+     {
+        
+     }
 }

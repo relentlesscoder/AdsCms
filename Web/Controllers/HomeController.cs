@@ -46,6 +46,24 @@ namespace AdCms.Web.Controllers
             return PartialView("DisplayAds", viewModel);
         }
 
+        public ActionResult DisplayAdsByCriterion()
+        {
+            AdsViewModel viewModel = MapToAdsViewModel(null);
+            return PartialView("DisplayAds", viewModel);
+        }
+
+        public ActionResult DisplayTopFiveAdsByCoverage()
+        {
+            AdsViewModel viewModel = MapToAdsViewModel(null);
+            return PartialView("DisplayAds", viewModel);
+        }
+
+        public ActionResult DisplayTopFiveBrandsByCoverage()
+        {
+            AdsViewModel viewModel = MapToAdsViewModel(null);
+            return PartialView("DisplayAds", viewModel);
+        }
+
         #endregion
 
         #region Private Methods
