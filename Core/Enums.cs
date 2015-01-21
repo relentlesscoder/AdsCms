@@ -8,13 +8,19 @@ namespace AdCms.Core
 {
     public static class Enums
     {
+        public enum PageMode
+        {
+            Full = 1,
+            CoverGeFifty = 2,
+        }
+
         public enum SortOrder
         {
             Asc = 1,
             Desc = 2
         }
 
-        public enum SortByColumn
+        public enum ColumnIndex
         {
             AdId = 1,
             BrandId = 2,

@@ -32,13 +32,13 @@ namespace AdCme.Service.Service
 
         #region IAdsService Members
 
-        public List<AdsDo> GetAdsList<TKey>(DateTime startDate, DateTime endDate, IList<SortBy<AdsDo, TKey>> sortBy = null,
-            Expression<Func<AdsDo, bool>> predicate = null, int numberOfItems = 0)
+        public List<AdsDo> GetAdsList<TKey>(DateTime startDate, DateTime endDate, ref int total, IList<SortBy<AdsDo, TKey>> sortBy = null,
+            Expression<Func<AdsDo, bool>> predicate = null, int count = 0, int offset = 0)
         {
             List<AdsDo> adsDos = _adsRepository.GetAdsByDateRange(startDate, endDate);
+            total = adsDos.Count;
 
             IQueryable<AdsDo> entityList;
-            IOrderedQueryable<AdsDo> orderedEntityList;
             if (predicate != null)
             {
                 entityList = (adsDos.AsQueryable()).Where(predicate);
@@ -47,35 +47,40 @@ namespace AdCme.Service.Service
             {
                 entityList = adsDos.AsQueryable();
             }
-            if (numberOfItems > 0)
-            {
-                entityList = entityList.Take(numberOfItems);
-            }
             if (sortBy != null && sortBy.Count > 0)
             {
-                orderedEntityList = ApplySortCriterion(entityList, sortBy[0]);
+                entityList = ApplySortCriterion(entityList, sortBy[0]);
                 for (int i = 1; i < sortBy.Count; i++)
                 {
-                    orderedEntityList = ApplySortCriterion(orderedEntityList, sortBy[i]);
+                    entityList = ApplySortCriterion(entityList, sortBy[i]);
                 }
             }
             else
             {
-                orderedEntityList = entityList.OrderBy(p => p.BrandName);
+                entityList = entityList.OrderBy(p => p.BrandName);
             }
 
-            return orderedEntityList.ToList();
+            if (offset > 0)
+            {
+                entityList = entityList.Skip(offset);
+            }
+            if (count > 0)
+            {
+                entityList = entityList.Take(count);
+            }
+
+            return entityList.ToList();
         }
 
         #endregion
 
         #region Private Methods
 
-        private IOrderedQueryable<AdsDo> ApplySortCriterion<TKey>(IQueryable<AdsDo> queryable,
+        private IQueryable<AdsDo> ApplySortCriterion<TKey>(IQueryable<AdsDo> queryable,
             SortBy<AdsDo, TKey> sortCriterion)
 
     {
-        IOrderedQueryable<AdsDo> orderedEntityList;
+        IQueryable<AdsDo> orderedEntityList;
         switch (sortCriterion.Order)
         {
             case Enums.SortOrder.Desc:

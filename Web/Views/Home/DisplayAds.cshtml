@@ -1,35 +1,31 @@
-﻿@using AdCms.Domain.Model
-@using AdCms.Web.Models
-@model AdsViewModel
+﻿<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tbAds').dataTable({
+            "processing": true,
+            "serverSide": true,
+            "searching": false,
+            "ajax": '@Url.Action("DisplayAds", "Home")'
+        });
+    });
+</script>
 
-@if (Model.Ads != null && Model.Ads.Count > 0)
-{
-    <div id="divControlPanels">
-        
-    </div>
-    
-    <table id="tbAds">
-        <tr>
-            <th>AdId</th>
-            <th>BrandId</th>
-            <th>Name</th>
-            <th>NumPages</th>
-            <th>Position</th>
-        </tr>
-        @foreach (AdsDo adsDo in Model.Ads)
-        {
+    <table id="tbAds" class="display" cellspacing="0" width="100%" >
+        <thead>
             <tr>
-                <td>@Html.Raw(adsDo.AdId)</td>
-                <td>@Html.Raw(adsDo.BrandId)</td>
-                <td>@Html.Raw(adsDo.BrandName)</td>
-                <td>@Html.Raw(adsDo.NumPages)</td>
-                <td>@Html.Raw(adsDo.Position)</td>
+                <th>AdId</th>
+                <th>BrandId</th>
+                <th>Name</th>
+                <th>NumPages</th>
+                <th>Position</th>
             </tr>
-        }
+        </thead>
+        <tfoot>
+            <tr>
+                <th>AdId</th>
+                <th>BrandId</th>
+                <th>Name</th>
+                <th>NumPages</th>
+                <th>Position</th>
+            </tr>
+        </tfoot>
     </table>
-    
-     if (Model.EnablePaging)
-     {
-        
-     }
-}

@@ -14,7 +14,7 @@ namespace AdCms.Web.Controllers
         private readonly IAdsService _adsService;
         private readonly DateTime _startDate = new DateTime(2011, 1, 1);
         private readonly DateTime _endDate = new DateTime(2011, 4, 1);
-        private const int ITEM_PER_PAGE = 100;
+        private const int DEFAULT_ITEM_PER_PAGE = 10;
 
         #endregion
 
@@ -39,29 +39,12 @@ namespace AdCms.Web.Controllers
             return View();
         }
 
-        public ActionResult DisplayAds()
+        public JsonResult DisplayAds(int draw, int start, int length)
         {
-            List<AdsDo> adsDos = _adsService.GetAdsList<string>(_startDate, _endDate);
-            AdsViewModel viewModel = MapToAdsViewModel(adsDos);
-            return PartialView("DisplayAds", viewModel);
-        }
-
-        public ActionResult DisplayAdsByCriterion()
-        {
-            AdsViewModel viewModel = MapToAdsViewModel(null);
-            return PartialView("DisplayAds", viewModel);
-        }
-
-        public ActionResult DisplayTopFiveAdsByCoverage()
-        {
-            AdsViewModel viewModel = MapToAdsViewModel(null);
-            return PartialView("DisplayAds", viewModel);
-        }
-
-        public ActionResult DisplayTopFiveBrandsByCoverage()
-        {
-            AdsViewModel viewModel = MapToAdsViewModel(null);
-            return PartialView("DisplayAds", viewModel);
+            int totalCount = 0;
+            List<AdsDo> adsDos = _adsService.GetAdsList<string>(_startDate, _endDate, ref totalCount, count:length, offset:start);
+            List<List<String>> data = MapToAdsData(adsDos);
+            return Json(new { draw = draw, recordsTotal = totalCount, recordsFiltered = totalCount, data = data }, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
@@ -75,6 +58,24 @@ namespace AdCms.Web.Controllers
             adsViewModel.Ads = adsDos;
 
             return adsViewModel;
+        }
+
+        private List<List<String>> MapToAdsData(IList<AdsDo> adsDos)
+        {
+            List<List<String>> data = new List<List<string>>();
+
+            foreach (AdsDo adsDo in adsDos)
+            {
+                List<String> attributeList = new List<string>();
+                attributeList.Add(adsDo.AdId.ToString());
+                attributeList.Add(adsDo.BrandId.ToString());
+                attributeList.Add(adsDo.BrandName);
+                attributeList.Add(adsDo.NumPages.ToString());
+                attributeList.Add(adsDo.Position);
+                data.Add(attributeList);
+            }
+
+            return data;
         }
 
         #endregion
