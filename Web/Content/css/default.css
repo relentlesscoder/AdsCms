@@ -1,0 +1,422 @@
+﻿html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    font-size: 100%;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+header, nav, section, article, aside, figure, footer {
+    display: block;
+}
+
+#header {
+    height: 96px;
+}
+
+#wrapper {
+}
+
+body {
+    background: url("../../Content/images/bg.png") repeat scroll 0 0 #FFFFFF;
+    color: #444444;
+    font-family: Verdana,Asap,Verdana,Sans-Serif,Arial;
+    font-size: 75%;
+    line-height: 160%;
+}
+
+nav#main-nav {
+    background: none repeat scroll 0 0 #414141;
+    border-top: 1px solid #F2861D;
+    display: block;
+}
+
+.clearfix:after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+#content {
+    float: left;
+    margin: 15px 0;
+    width: 753px;
+}
+
+#main-content {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #E1E1E1;
+    margin: 10px 0 0;
+    overflow: hidden;
+    padding: 15px 25px;
+}
+
+#sidebar {
+    background: none repeat scroll 0 0 #FFFFFF;
+    float: left;
+    font-size: 13px;
+    margin-top: 15px;
+    padding: 0 25px 20px 20px;
+    width: 300px;
+}
+
+#content-box {
+    width: 100%;
+}
+
+.center_width {
+    margin: 0 auto;
+    max-width: 1103px;
+}
+
+footer {
+    background: none repeat scroll 0 0 white;
+    border-top: 1px solid #E1E1E1;
+    clear: both;
+    margin: 0;
+    padding: 5px 10px;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 10px;
+    color: #333333;
+    text-align: center;
+}
+
+.post {
+    color: #000000;
+    font-size: 14px;
+    line-height: 22px;
+    margin: 0 0 15px;
+    overflow: hidden;
+    padding: 0 0 15px;
+    border-bottom: 2px solid #E1E1E1;
+}
+
+.post-thumbnail {
+    border: 1px solid #E1E1E1;
+    float: left;
+    height: 200px;
+    margin: 0 20px 0 0;
+    width: 200px;
+}
+
+.post-content {
+    overflow: hidden;
+}
+
+.clear {
+    clear: both;
+}
+
+.post a {
+    color: #F2861D;
+}
+
+a:link, a:visited {
+    outline: medium none;
+}
+
+a {
+    color: #F2861D;
+    text-decoration: none;
+}
+
+.post img {
+    max-width: 650px;
+}
+
+.post-thumbnail img {
+    height: 200px;
+    width: 200px;
+}
+
+a img {
+    border: medium none;
+}
+
+.article-header {
+    margin-bottom: 10px;
+}
+
+.post h2 {
+    border-bottom: 2px solid #E1E1E1;
+}
+
+.post h1, .post h2, .post h3, .post h4, .post h5, .post h6 {
+    clear: both;
+    display: block;
+    margin: 20px 0;
+}
+
+.article-title {
+    color: #262626;
+    font-family: Asap,serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 30px;
+    margin: 0 !important;
+}
+
+h2 {
+    font-size: 24px;
+    line-height: 32px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #262626;
+    font-family: Asap,Arial,Verdana,Sans-Serif;
+    font-size: 100%;
+    font-weight: 700;
+}
+
+.article-title a {
+    color: #262626;
+}
+
+.article-deck {
+    color: #999999;
+    font-family: arial,sans-serif;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.read-full-article {
+    background: url("../../Content/images/bg1.png") repeat-x scroll 0 0 transparent;
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+.read-full-article span {
+    background: none repeat scroll 0 0 #CCCCCC;
+    float: right;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.read-full-article a {
+    color: #FFFFFF;
+    padding: 1px 6px;
+}
+
+.article-brief {
+    
+}
+
+p {
+    margin: 10px 0 15px;
+}
+
+.article-widget {
+     background: url("../../Content/images/bg1.png") repeat scroll 0 0 transparent;
+    margin: 0 0 5px;
+    overflow: hidden;
+    padding: 10px;
+}
+
+#tabMostRecent ul, #tabMostPopular ul {
+    list-style-type: none;
+}
+
+#tabMostRecent ul li, #tabMostPopular ul li {
+    border-bottom: 1px solid #EEEEEE;
+    padding: 5px 0;
+}
+
+.article-wrapper 
+{
+    font-family: georgia,"times new roman",times,serif;
+    width: 703px;
+    margin-right: 10px;
+    float: left;
+    position: relative;
+}
+
+.article-wrapper h1 {
+    font-family: georgia,"times new roman",times,serif;
+    font-size: 25px;
+    line-height: 12px;
+    padding-top: 0;
+    margin-bottom: 4px;
+}
+
+.article_byline 
+{
+    margin-top: 5px;
+    margin-bottom: 17px;
+    padding: 0;
+    border-bottom: medium none;
+}
+
+.article-date {
+    color: #808080;
+    font-family: arial,helvetica,sans-serif;
+    font-weight: normal;
+    margin: 17px 0;
+    font-size: 12px;
+}
+
+#article-content {
+    position: relative;
+}
+
+#article-content p
+{
+    margin-bottom: 22px;
+}
+
+.article-body {
+    font-family: georgia,"times new roman",times,serif;
+    text-align: left;
+    font-size: 15px;
+    line-height: 15px;
+}
+
+.article-image {
+    padding-top: 10px;
+    position: relative;
+    margin: 0;
+}
+
+.article-main-image {
+    background-color: #F1F1F1;
+    border: 1px solid #F1F1F1;
+    padding: 1px;
+}
+
+.article-body .entry-content {
+    
+}
+
+.article-body .article-side {
+    border-bottom: medium none;
+    padding: 0;
+    width: 300px;
+    margin-bottom: 10px;
+    position: relative;
+    margin-right: 15px;
+    margin-top: 7px;
+    float: left;
+}
+
+/* Menu */
+.ddsmoothmenu{
+font: bold 15px Verdana;
+background: #414141; /*background of menu bar (default state)*/
+width: 100%;
+}
+
+.ddsmoothmenu ul{
+z-index:100;
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+
+/*Top level list items*/
+.ddsmoothmenu ul li{
+position: relative;
+display: inline;
+float: left;
+}
+
+/*Top level menu link items style*/
+.ddsmoothmenu ul li a{
+display: block;
+background: #414141; /*background of menu items (default state)*/
+color: white;
+padding: 8px 10px;
+border-right: 1px solid #778;
+color: #2d2b2b;
+text-decoration: none;
+}
+
+* html .ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+display: inline-block;
+}
+
+.ddsmoothmenu ul li a:link, .ddsmoothmenu ul li a:visited{
+color: white;
+}
+
+.ddsmoothmenu ul li a.selected{ /*CSS class that's dynamically added to the currently active menu items' LI A element*/
+background: black; 
+color: white;
+}
+
+.ddsmoothmenu ul li a:hover{
+background: black; /*background of menu items during onmouseover (hover state)*/
+color: white;
+}
+	
+/*1st sub level menu*/
+.ddsmoothmenu ul li ul{
+position: absolute;
+left: 0;
+display: none; /*collapse all sub menus to begin with*/
+visibility: hidden;
+}
+
+/*Sub level menu list items (undo style from Top level List Items)*/
+.ddsmoothmenu ul li ul li{
+display: list-item;
+float: none;
+}
+
+/*All subsequent sub menu levels vertical offset after 1st level sub menu */
+.ddsmoothmenu ul li ul li ul{
+top: 0;
+}
+
+/* Sub level menu links style */
+.ddsmoothmenu ul li ul li a{
+font: normal 15px Verdana;
+width: 160px; /*width of sub menus*/
+padding: 5px;
+margin: 0;
+border-top-width: 0;
+border-bottom: 1px solid gray;
+}
+
+/* Holly Hack for IE \*/
+* html .ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+
+
+/* ######### CSS classes applied to down and right arrow images  ######### */
+
+.downarrowclass{
+position: absolute;
+top: 12px;
+right: 7px;
+}
+
+.rightarrowclass{
+position: absolute;
+top: 6px;
+right: 5px;
+}
+
+/* ######### CSS for shadow added to sub menus  ######### */
+
+.ddshadow{ /*shadow for NON CSS3 capable browsers*/
+position: absolute;
+left: 0;
+top: 0;
+width: 0;
+height: 0;
+background: silver;
+}
+
+.toplevelshadow{ /*shadow opacity for NON CSS3 capable browsers. Doesn't work in IE*/
+opacity: 0.8;
+}
+
+
+
