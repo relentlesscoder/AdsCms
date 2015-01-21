@@ -31,12 +31,12 @@ namespace AdCms.Web
 
         protected void Application_EndRequest(object sender, EventArgs e)
         {
-            //ToDo: for future implementation
+            WindsorContainerFactory.Instance.Dispose();
         }
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            WindsorContainerFactory.Instance.Dispose();
+            //ToDo: for future implementation
         }
 
         public static void RegisterRoutes(RouteCollection routes)
