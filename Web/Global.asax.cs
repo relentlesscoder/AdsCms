@@ -36,7 +36,7 @@ namespace AdCms.Web
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            //ToDo: for future implementation
+            WindsorContainerFactory.Instance.Dispose();
         }
 
         public static void RegisterRoutes(RouteCollection routes)

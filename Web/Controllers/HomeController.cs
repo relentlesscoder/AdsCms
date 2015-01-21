@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using AdCme.Service.Interface;
 using AdCms.Domain.Model;
@@ -14,6 +12,9 @@ namespace AdCms.Web.Controllers
         #region Members
 
         private readonly IAdsService _adsService;
+        private readonly DateTime _startDate = new DateTime(2011, 1, 1);
+        private readonly DateTime _endDate = new DateTime(2011, 4, 1);
+        private const int ITEM_PER_PAGE = 100;
 
         #endregion
 
@@ -35,16 +36,28 @@ namespace AdCms.Web.Controllers
 
         public ActionResult Index()
         {
-            //ToDo: get data and map to view model
-            AdsViewModel viewModel = new AdsViewModel();
-            return View(viewModel);
+            return View();
+        }
+
+        public ActionResult DisplayAds()
+        {
+            List<AdsDo> adsDos = _adsService.GetAdsList<string>(_startDate, _endDate);
+            AdsViewModel viewModel = MapToAdsViewModel(adsDos);
+            return PartialView("DisplayAds", viewModel);
         }
 
         #endregion
 
         #region Private Methods
 
+        private AdsViewModel MapToAdsViewModel(IList<AdsDo> adsDos)
+        {
+            AdsViewModel adsViewModel = new AdsViewModel();
 
+            adsViewModel.Ads = adsDos;
+
+            return adsViewModel;
+        }
 
         #endregion
     }

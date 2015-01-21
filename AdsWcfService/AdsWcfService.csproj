@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D3F4AAAE-1A67-4E77-AA28-3BEC88B5FCF2}</ProjectGuid>
+    <ProjectGuid>{0255124E-64C8-4673-8A61-01FB7D0A9F5D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AdCms.Domain</RootNamespace>
-    <AssemblyName>Domain</AssemblyName>
+    <RootNamespace>AdCms.AdsWcfService</RootNamespace>
+    <AssemblyName>AdsWcfService</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,9 +41,56 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\IAdsRepository.cs" />
-    <Compile Include="Model\AdsDo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\WcfAdsRepository.cs" />
+    <Compile Include="Service References\AdServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{d3f4aaae-1a67-4e77-aa28-3bec88b5fcf2}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Service References\AdServiceReference\AdCms.AdsWcfService.AdServiceReference.Ad.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AdServiceReference\AdDataService.wsdl" />
+    <None Include="Service References\AdServiceReference\AdService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AdServiceReference\AdService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AdServiceReference\AdService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AdServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AdServiceReference\AdService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AdServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AdServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AdServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
