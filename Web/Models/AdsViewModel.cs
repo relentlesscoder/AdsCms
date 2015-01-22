@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using AdCms.Domain.Model;
 
 namespace AdCms.Web.Models
 {
     public class AdsViewModel
     {
+        public IList<AdsDo> Ads { get; set; }
+
+        public bool EnablePaging { get; set; }
     }
 }

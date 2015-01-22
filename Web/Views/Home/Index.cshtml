@@ -1,7 +1,14 @@
-﻿@using AdCms.Web.Models
-@model AdsViewModel
-@{
+﻿@{
     ViewBag.Title = "Home";
 }
 
-<h1>Test Ads</h1>
+<h1>Please click buttons to refresh list:</h1>
+<div id="divControlPanel">
+    <input type="button" id="btnFull" onclick="BindFullList(true); return false;" value="Full Ads" />
+    <input type="button" id="btn50Coverage" onclick="BindFiftyCoverageList(); return false;" value="50% Coverage" />
+    <input type="button" id="btnTop5Ads" onclick="BindTopFiveAdsList(); return false;" value="Top 5 Ads" />
+    <input type="button" id="btnTop5Brands" onclick="BindTopFiveBrandsList(); return false;" value="Top 5 Brands" />
+</div>
+<div id="divRenderAds">
+    @{Html.RenderPartial("DisplayAds");}
+</div>

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using AdCme.Service.Interface;
 using AdCme.Service.Service;
+using AdCms.AdsWcfService.Repository;
+using AdCms.Domain.Interface;
 using AdCms.Web.Controllers;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
@@ -16,6 +14,11 @@ namespace AdCms.Web.Windsor
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
+            #region Repositories
+            container.Register(
+                Component.For<IAdsRepository>().ImplementedBy<WcfAdsRepository>().LifestyleTransient());
+            #endregion
+
             #region
             container.Register(
                 Component.For<IAdsService>().ImplementedBy<AdsService>().LifestyleTransient());

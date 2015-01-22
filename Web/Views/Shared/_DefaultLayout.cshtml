@@ -5,7 +5,10 @@
         <title>@ViewBag.Title</title>
         <link href="@Url.Content("~/Content/css/default.css")" rel="stylesheet" type="text/css" />
         <link href="@Url.Content("~/Content/css/jquery-ui-1.9.0.custom.css")" rel="stylesheet" type="text/css" />
-        <script src="@Url.Content("~/Scripts/jquery-1.8.2.js")" type="text/javascript"></script>
+        <link href="@Url.Content("~/Content/css/jquery.dataTables.css")" rel="stylesheet" type="text/css" />
+        <script src="@Url.Content("~/Scripts/jquery-1.11.2.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/scripts.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery.dataTables.js")" type="text/javascript"></script>
         <script src="@Url.Content("~/Scripts/modernizr-2.6.2.js")" type="text/javascript"></script>
         <script src="@Url.Content("~/Scripts/menubar.js")" type="text/javascript"></script>
         <script src="@Url.Content("~/Scripts/jquery-ui-1.9.0.custom.js")" type="text/javascript"></script>
@@ -16,7 +19,7 @@
             <header id="header"></header>
             <nav id="main-nav" class="clearfix">
                 <div class="center_width">
-                    @{ Html.RenderAction("MainNavBar", "NavBar"); }
+                    @*@{ Html.RenderAction("MainNavBar", "NavBar"); }*@
                 </div>
             </nav>
             <div id="content-box" class="clearfix">
@@ -27,7 +30,7 @@
                         </div>
                     </div>
                     <div id="sidebar">
-                        @{Html.RenderPartial("_ArticleWidget");}
+                        Test Side Bar
                     </div>
                 </div> 
             </div>
