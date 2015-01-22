@@ -8,7 +8,9 @@ namespace AdCme.Service.Interface
 {
     public interface IAdsService
     {
-        List<AdsDo> GetAdsList<TKey>(DateTime startDate, DateTime endDate, ref int total, IList<SortBy<AdsDo, TKey>> sortBy = null,
+        List<AdsDo> GetAdsList(DateTime startDate, DateTime endDate, ref int total, ref int filteredCount, IList<SortBy> sortBy = null,
             Expression<Func<AdsDo, bool>> predicate = null, int count = 0, int offset = 0);
+        List<AdsDo> GetTopAdsByCoverage(DateTime startDate, DateTime endDate, int count = 0);
+        List<AdsDo> GetTopBrandsByCoverage(DateTime startDate, DateTime endDate, int count = 0);
     }
 }

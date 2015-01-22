@@ -40,7 +40,8 @@ namespace AdCms.AdsWcfService.Repository
             }
             catch (Exception ex)
             {
-                //ToDo: logging
+                //ToDo: add logging to record error details, for now just simply throw
+                throw;
             }
             return adsDos;
         }

@@ -1,12 +1,55 @@
 ﻿<script type="text/javascript">
     $(document).ready(function() {
+        BindFullList(false);
+    });
+
+    function BindFullList(destroy) {
         $('#tbAds').dataTable({
+            "destroy": destroy,
             "processing": true,
             "serverSide": true,
             "searching": false,
-            "ajax": '@Url.Action("DisplayAds", "Home")'
+            "order": [2, 'asc'],
+            "ajax":'@Url.Action("DisplayAds", "Home", new {mode = 1})'
         });
-    });
+    }
+
+    function BindFiftyCoverageList() {
+        $('#tbAds').dataTable({
+            "destroy": true,
+            "processing": true,
+            "serverSide": true,
+            "searching": false,
+            "order": [2, 'asc'],
+            "ajax": '@Url.Action("DisplayAds", "Home", new {mode = 2})'
+        });
+    }
+
+    function BindTopFiveAdsList() {
+        $('#tbAds').dataTable({
+            "destroy": true,
+            "processing": true,
+            "serverSide": true,
+            "searching": false,
+            "ordering": false,
+            "paging": false,
+            "order": [[3, 'desc'], [2, 'asc']],
+            "ajax": '@Url.Action("DisplayAds", "Home", new {mode = 3})'
+        });
+    }
+
+    function BindTopFiveBrandsList() {
+        $('#tbAds').dataTable({
+            "destroy": true,
+            "processing": true,
+            "serverSide": true,
+            "searching": false,
+            "ordering": false,
+            "paging": false,
+            "order": [[3, 'desc'], [2, 'asc']],
+            "ajax": '@Url.Action("DisplayAds", "Home", new {mode = 4})'
+        });
+    }
 </script>
 
     <table id="tbAds" class="display" cellspacing="0" width="100%" >

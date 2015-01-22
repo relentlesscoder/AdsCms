@@ -23,7 +23,7 @@ namespace AdCme.Service.Service
         {
             if (adsRepository == null)
             {
-                //ToDo: logging
+                throw new ArgumentException("IAdsRepository required");
             }
             this._adsRepository = adsRepository;
         }
@@ -32,7 +32,7 @@ namespace AdCme.Service.Service
 
         #region IAdsService Members
 
-        public List<AdsDo> GetAdsList<TKey>(DateTime startDate, DateTime endDate, ref int total, IList<SortBy<AdsDo, TKey>> sortBy = null,
+        public List<AdsDo> GetAdsList(DateTime startDate, DateTime endDate, ref int total, ref int filteredCount, IList<SortBy> sortBy = null,
             Expression<Func<AdsDo, bool>> predicate = null, int count = 0, int offset = 0)
         {
             List<AdsDo> adsDos = _adsRepository.GetAdsByDateRange(startDate, endDate);
@@ -47,6 +47,8 @@ namespace AdCme.Service.Service
             {
                 entityList = adsDos.AsQueryable();
             }
+
+            filteredCount = (entityList.ToList()).Count;
             if (sortBy != null && sortBy.Count > 0)
             {
                 entityList = ApplySortCriterion(entityList, sortBy[0]);
@@ -72,26 +74,71 @@ namespace AdCme.Service.Service
             return entityList.ToList();
         }
 
+        public List<AdsDo> GetTopAdsByCoverage(DateTime startDate, DateTime endDate,
+            int count = 0)
+        {
+            List<AdsDo> adsDos = _adsRepository.GetAdsByDateRange(startDate, endDate);
+
+            var result =
+                adsDos
+                    .OrderByDescending(p => p.NumPages)
+                    .ThenBy(p => p.BrandName).Take(count);
+
+            return result.ToList();
+        }
+
+        public List<AdsDo> GetTopBrandsByCoverage(DateTime startDate, DateTime endDate,
+            int count = 0)
+        {
+            List<AdsDo> adsDos = _adsRepository.GetAdsByDateRange(startDate, endDate);
+
+            var result =
+                adsDos.GroupBy(p => p.BrandId)
+                    .Select(
+                        p =>
+                            new AdsDo
+                            {
+                                AdId = -1,
+                                BrandId = p.First().BrandId,
+                                BrandName = p.First().BrandName,
+                                NumPages = p.Sum(c => c.NumPages),
+                                Position = "N/A"
+                            })
+                    .OrderByDescending(p => p.NumPages)
+                    .ThenBy(p => p.BrandName).Take(count);
+            return result.ToList();
+        }
+
         #endregion
 
         #region Private Methods
 
-        private IQueryable<AdsDo> ApplySortCriterion<TKey>(IQueryable<AdsDo> queryable,
-            SortBy<AdsDo, TKey> sortCriterion)
+        private IQueryable<AdsDo> ApplySortCriterion(IQueryable<AdsDo> queryable,
+            SortBy sortCriterion)
 
     {
         IQueryable<AdsDo> orderedEntityList;
         switch (sortCriterion.Order)
         {
             case Enums.SortOrder.Desc:
-                orderedEntityList = queryable.OrderByDescending(sortCriterion.KeySelector);
+                orderedEntityList = queryable.OrderByDescending(OrderExpression<AdsDo>(sortCriterion.Name));
                 break;
             default:
-                orderedEntityList = queryable.OrderBy(sortCriterion.KeySelector);
+                orderedEntityList = queryable.OrderBy(OrderExpression<AdsDo>(sortCriterion.Name));
                 break;
         }
         return orderedEntityList;
     }
+
+        public static Expression<Func<T, object>> OrderExpression<T>(string sortBy)
+        {
+            ParameterExpression param = Expression.Parameter(typeof(T), "item");
+
+            Expression<Func<T, object>> sortExpression = Expression.Lambda<Func<T, object>>
+                (Expression.Convert(Expression.Property(param, sortBy), typeof(object)), param);
+
+            return sortExpression;
+        }
 
         #endregion
     }

@@ -207,7 +207,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -231,6 +233,10 @@
     <ProjectReference Include="..\AdsWcfService\AdsWcfService.csproj">
       <Project>{0255124e-64c8-4673-8a61-01fb7d0a9f5d}</Project>
       <Name>AdsWcfService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{ee3724d1-57c4-4fea-9005-d4bdb237f71e}</Project>
+      <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{d3f4aaae-1a67-4e77-aa28-3bec88b5fcf2}</Project>
